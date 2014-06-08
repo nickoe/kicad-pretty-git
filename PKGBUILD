@@ -1,10 +1,10 @@
 # Maintainer: Nick Østergaard <oe.nick at gmail dot com>
 pkgname=kicad-pretty-git
 pkgver=1
-pkgrel=1
-pkgdesc="KiCad .pretty repos"
+pkgrel=2
+pkgdesc="KiCad .pretty repos. Theese are the new footprint library."
 arch=('any')
-url=""
+url="https://github.com/KiCad"
 license=('GPL')
 makedepends=('git')
 options=('!strip')
@@ -41,6 +41,9 @@ package() {
   
   wget -q https://raw.githubusercontent.com/KiCad/kicad-library/master/template/fp-lib-table.for-pretty \
        -O "$pkgdir/usr/share/kicad/footprints/fp-lib-table"
+
+  mkdir -p "$pkgdir/etc/profile.d"
+  echo "export KISYSMOD=/usr/share/kicad/footprints" > "$pkgdir/etc/profile.d/kicad-pretty-git.sh"
 }
 
 # vim:set ts=2 sw=2 et:
